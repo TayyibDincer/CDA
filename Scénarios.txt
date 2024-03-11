@@ -1,0 +1,42 @@
+UC commencer le jeu :
+Scénario nominal :
+1. Le système demande le nombre de tas
+2. L'utilisateur saisit un nombre >=1
+3. Le système enregistre le nombre de tas et demande le nom du joueur 1
+4. Le joueur 1 entre le nom du joueur 1
+5. Le système enregistre le nom du joueur 1 et demande le nom du joueur 2
+6. Le joueur 2 entre le nom du joueur 2
+7. Le système enregistre le nom du joueur 2
+
+Extensions :
+1.a Le système comprend que ce n'est pas la première partie
+	1. Appel UC retirer allumette
+3.a L'utilisateur a saisit un nombre >1
+	1. Le système affiche un message
+	2. Retour au point 1 du Scénario nominal
+
+
+UC jouer partie :
+Scénario nominal :
+1. Le système remarque que c'est la première partie, Appel UC commencer
+le jeu
+2. Le système affiche l'état de la partie, et demande au joueur actif de
+jouer son coup
+3. Le joueur actif saisit son coup
+4. Le système enregistre le coup
+
+
+Extensions :
+2-4. répéter tant qu'il y a des allumettes
+1. Le système remarque que ce n'est pas la première partie
+	1. Retour au point 2 du Scénario nominal
+3.a. Le joueur actif saisit un coup invalide
+	1. Le système affiche un message
+	2. Retour au point 1 du Scénario nominal
+4.a. Le système a vu que le nombre d'allumette est égal à 0
+	1. Le système propose de rejouer une partie ou de quitter
+	2. Le joueur décide de rejouer une partie
+	3. Le système enregistre le message, il initialise le tas à nouveau, et retour au point 2 du scénario nominal
+	
+	2.a. Le joueur décide de quitter le jeu
+		1. Le système affiche le nombre de parties gagnés pour chaque joueur et le nom du vainqueur ou ex aequo
