@@ -1,0 +1,176 @@
+Partie de Tayyib :
+-commentaires et javadoc
+-nomJoueur() -> surcharge
+-lignesEtNbAllumette()
+-afficherPartiesGagnees()
+-afficherGagnant() et surcharge
+-afficherErreur() -> surcharge
+-jeuGagnee()
+-gérer l'exception dans coupValide()
+-ControleurJeuNim : else code quitter le jeu et affichage vainqueur
+
+Utilisation de l'IA :
+
+Je ne savais plus s'il fallait mettre throws aussi dans les autres méthodes où l'exception est attrapé du coup je l'ai demandé à chatGpt qui n'a pas compris la première fois et qui a répondu que non à la deuxième.
+
+J'avais oublié comment fonctionne précisémment la surcharge je l'ai demandé à chatGpt qui m'a bien expliqué et que j'ai utilisé.
+
+La façon d'écrire la javadoc n'était plus très clair du coup je lui ai demandé :
+
+
+Moi :
+
+comment faire pour correctement faire un projet java je sais que la prof a expliqué un truc à mettre dans chaques classes avec /**
+*@param ...
+*/
+il faut faire quoi et surtout comment ça s'appelle stp
+
+ChatGPT :
+
+Ce que tu décris, c'est l'utilisation de commentaires Java appelés "Javadoc". Les commentaires Javadoc sont utilisés pour documenter les classes, les méthodes, les variables et d'autres éléments de ton code Java. Voici un exemple simple pour une méthode :
+/**
+ * Cette méthode calcule la somme de deux entiers.
+ * 
+ * @param a Le premier entier
+ * @param b Le deuxième entier
+ * @return La somme des deux entiers
+ */
+public int additionner(int a, int b) {
+    return a + b;
+}
+Dans cet exemple :
+
+    La ligne /** juste avant la méthode indique le début d'un commentaire Javadoc pour cette méthode.
+    @param est utilisé pour décrire les paramètres de la méthode. Dans l'exemple, @param a indique que a est le premier entier, et @param b indique que b est le deuxième entier.
+    @return est utilisé pour décrire la valeur de retour de la méthode.
+
+Tu peux générer automatiquement la documentation à partir de ces commentaires en utilisant l'outil Javadoc inclus dans le JDK (Kit de Développement Java). Pour générer la documentation, tu peux utiliser la commande javadoc dans ton terminal ou ta ligne de commande.
+
+Voici comment tu peux générer la documentation pour toutes les classes dans un dossier :
+javadoc -d chemin_vers_dossier_destination -sourcepath chemin_vers_dossier_source *.java
+javadoc -d chemin_vers_dossier_destination -sourcepath chemin_vers_dossier_source *.java
+
+Moi :
+
+/* réinitialise tas avec le nb de bâton donné au début du jeu */
+                    tas =new GrpTas(tas.getNbInitial());
+j'ai écris ça comme description pour une ligne en java c'est bon comme description?
+
+ChatGPT :
+
+Oui, ta description semble bonne pour cette ligne de code en Java. Tu décris ce que fait cette ligne de manière claire et concise.
+
+Pour expliquer davantage :
+
+    Tu indiques que cette ligne réinitialise le tas avec le nombre de bâtons donné au début du jeu.
+    Ensuite, tu utilises la syntaxe de commentaire standard en Java, qui est /* ... */ pour un commentaire sur plusieurs lignes.
+
+Voici à quoi cela ressemble dans ton code :
+/* réinitialise tas avec le nb de bâton donné au début du jeu */
+tas = new GrpTas(tas.getNbInitial());
+Cette description devrait bien aider les autres développeurs qui consultent le code à comprendre rapidement ce que fait cette ligne. C'est un bon exemple d'utilisation de commentaires pour rendre ton code plus clair et plus facile à comprendre.
+
+Si tu as d'autres questions ou si tu as besoin d'aide supplémentaire, n'hésite pas à demander !
+
+Moi :
+
+et si j'ai des attributs dans ma classe?
+
+ChatGPT :
+
+Si tu as des attributs dans ta classe en Java, il est également recommandé de les documenter en utilisant des commentaires. Les commentaires te permettent de décrire ce que chaque attribut représente, son utilité, et éventuellement des informations supplémentaires sur sa nature ou son comportement.
+
+Voici comment tu pourrais documenter les attributs d'une classe en Java :
+Exemple de commentaires pour les attributs :
+/**
+ * Cette classe représente un étudiant.
+ * Elle contient des informations sur l'étudiant telles que son nom, son âge et son ID.
+ */
+public class Etudiant {
+
+    /** Le nom de l'étudiant */
+    private String nom;
+
+    /** L'âge de l'étudiant */
+    private int age;
+
+    /** L'ID de l'étudiant */
+    private int id;
+
+    /**
+     * Constructeur de la classe Etudiant.
+     * 
+     * @param nom Le nom de l'étudiant
+     * @param age L'âge de l'étudiant
+     * @param id L'ID de l'étudiant
+     */
+    public Etudiant(String nom, int age, int id) {
+        this.nom = nom;
+        this.age = age;
+        this.id = id;
+    }
+
+    /**
+     * Retourne le nom de l'étudiant.
+     * 
+     * @return Le nom de l'étudiant
+     */
+    public String getNom() {
+        return nom;
+    }
+
+    /**
+     * Modifie le nom de l'étudiant.
+     * 
+     * @param nom Le nouveau nom de l'étudiant
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
+     * Retourne l'âge de l'étudiant.
+     * 
+     * @return L'âge de l'étudiant
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * Modifie l'âge de l'étudiant.
+     * 
+     * @param age Le nouvel âge de l'étudiant
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * Retourne l'ID de l'étudiant.
+     * 
+     * @return L'ID de l'étudiant
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Modifie l'ID de l'étudiant.
+     * 
+     * @param id Le nouvel ID de l'étudiant
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // Autres méthodes...
+
+}
+Dans cet exemple :
+
+    Chaque attribut (nom, age, id) est précédé d'un commentaire qui décrit ce qu'il représente.
+    Les commentaires Javadoc indiquent la description de l'attribut et son utilité.
+    Les méthodes d'accès (getters) et de modification (setters) des attributs sont également documentées pour expliquer leur rôle.
+
+En documentant tes attributs de cette manière, tu rends ton code plus compréhensible pour les autres développeurs qui pourraient travailler avec ta classe. Cela aide également lorsque tu reviens sur ton propre code après un certain temps, en te rappelant facilement ce que chaque attribut fait.
