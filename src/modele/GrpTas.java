@@ -1,28 +1,27 @@
 package modele;
 
-import java.util.ArrayList;
-
 public class GrpTas {
-    /**
-     * @param nb - la nombre des Tas
-     * @throws ArrayIndexOutOfBoundsException- si le paramètre superieur à la taille du tableau ou inférieur à 0.
-     */
-    private int nb;
+    /** Le nombre de tas initial */
+    private final int nb;
 
-    public int getNbInitial() {
-        return nbInitial;
-    }
+    /** Un tableau représentant le tas */
+    private final int[] tas;
 
-    private final int nbInitial;
-    private int[] tas;
-
+    /**Constructeur de la classe GrpTas
+     * @param nb Le nombre de tas du jeu de Nim*/
     public GrpTas(int nb) {
         this.nb=nb;
         tas=new int[nb];
-        this.nbInitial = nb;
     }
 
-    /* Cette fonction crée le tas */
+    /** Retourne le nombre de tas initial du jeu
+     * @return nombre de tas initial */
+    public int getNb() {
+        return nb;
+    }
+
+    /** Retourne le tas sous la forme d'un tableau d'int
+     * @return tableau de tas sous la forme : à la jème case il y a 2*j+1*/
     public int[] creation(){
         for (int j=0;j<nb;j++){
             tas[j]=2*j+1;
@@ -30,10 +29,12 @@ public class GrpTas {
         return tas;
     }
 
-    /* Cette fonction vérifie si le coup 'm n' donné par l'utilisateur est valide après vérification du type */
-    public boolean coupValide(int ligne,int nbAllumette) throws ArrayIndexOutOfBoundsException{
-      if (0>(ligne) || (ligne)>(nb-1)){
-          throw new ArrayIndexOutOfBoundsException("la ligne doit être entre 0 et " + (nb - 1));}
+    /** Cette fonction vérifie si le coup 'm n', avec m et n des int, donné par l'utilisateur est valide. C'est-à-dire si m est compris entre 1 et le nombre de tas
+     * @return Renvoie true si le coup 'm n' est valide
+     * @throws ArrayIndexOutOfBoundsException Si la ligne choisie pour le coup est inférieure à 1 ou supérieur au nombre de tas */
+    public boolean coupValide(int ligne,int nbAllumette) throws ArrayIndexOutOfBoundsException {
+      if (0>(ligne) || (ligne)>(nb-1) || 0>(nbAllumette)){
+          throw new ArrayIndexOutOfBoundsException("la ligne doit être entre 0 et " + (nb) + " et il doit y avoir au moins une allumette à enlevé");}
       else{
           if (tas[ligne]>=nbAllumette){
               return true;
@@ -44,18 +45,23 @@ public class GrpTas {
       }
     }
 
-    /* Cette fonction retire une allumette et renvoie true, sinon renvoie false */
+    /** Cette fonction retire une allumette et renvoie true, sinon renvoie false */
     public boolean retirer(int ligne, int nombreAllumette) {
-        if (coupValide(ligne, nombreAllumette)) {
-            tas[ligne]-=nombreAllumette;
-            return true;
+        try {
+            if (coupValide(ligne, nombreAllumette)) {
+                tas[ligne]-=nombreAllumette;
+                return true;
+            }
+            else {
+                return false;
+            }
         }
-        else {
-            return false;
+        catch (ArrayIndexOutOfBoundsException e) {
+            throw new ArrayIndexOutOfBoundsException(e.getMessage());
         }
     }
 
-    /* Cette fonction vérifie si la partie est terminé */
+    /** Cette fonction vérifie si la partie est terminé */
     public boolean estPartieTerminee() {
         for (int i=0;i<nb;i++) {
             if (tas[i]>0) {

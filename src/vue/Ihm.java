@@ -10,7 +10,7 @@ public class Ihm {
         this.in = new Scanner(System.in);
     }
 
-    /* Cette fonction demande le nombre de tas. */
+    /** Cette fonction demande le nombre de tas. */
     public int nbTas(){
         int nb = 0;
         Scanner sc = new Scanner(System.in);
@@ -25,6 +25,7 @@ public class Ihm {
         return nb;
     }
 
+    /** Cette fonction demande le nom du joueur 2*/
     public String nomJoueur(String nom1) {
         String nom2 = "";
         Scanner sc = new Scanner(System.in);
@@ -44,9 +45,13 @@ public class Ihm {
 
         return nom2;
     }
+
+    /** Cette fonction demande le nom du joueur 1 (surcharge) */
     public String nomJoueur() {
         return nomJoueur(null);
     }
+
+    /** Cette fonction affiche le tas dans le terminal */
     public void afficherTas(int [] tas,int nb){
         for (int i=0;i<nb;i++){
             for (int j = 0; j < tas.length-i-1; j++) {
@@ -56,6 +61,9 @@ public class Ihm {
             System.out.println();
         }
     }
+
+
+    /** Cette fonction demande le coup du joueur et la retourne */
     public int[] ligneEtNbAllumette(String nom){
         Scanner in = new Scanner(System.in);
         while(true) {
@@ -71,13 +79,15 @@ public class Ihm {
                 if (sc.hasNextInt()) {
                     nb = sc.nextInt();
                 }
-                if (numTas != 0 && nb != 0) {
+                if (nb != 0) {
 
                     return new int[]{numTas-1, nb};
                 }
             }
         }
     }
+
+    /** Cette fonction demande si la personne veut rejouer une partie ou quitter et elle renvoie true si la personne désire rejouer et false sinon.*/
     public boolean rejouerOuQuitter(){
         Scanner sc =new Scanner(System.in);
         String ch="";
@@ -98,10 +108,12 @@ public class Ihm {
         }
     }
 
+    /** affiche le nombre de parties gagnées pour un joueur */
     public void afficherPartiesGagnees(String nom, int nbPartiesGagnees) {
         System.out.println(nom.toString() + " a gagné " + nbPartiesGagnees);
     }
 
+    /** Affiche le gagnant */
     public void afficherGagnant(String nom1) {
         afficherGagnant(nom1, null);
     }
@@ -114,6 +126,9 @@ public class Ihm {
         }
     }
     public void afficherErreur(){
-        System.out.println("le coup est invalide");
+        afficherErreur("Le coup est invalide");
+    }
+    public void afficherErreur(String e) {
+        System.out.println(e);
     }
 }
