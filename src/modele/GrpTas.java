@@ -34,7 +34,7 @@ public class GrpTas {
      * @throws ArrayIndexOutOfBoundsException Si la ligne choisie pour le coup est inférieure à 1 ou supérieur au nombre de tas */
     public boolean coupValide(int ligne,int nbAllumette) throws ArrayIndexOutOfBoundsException {
       if (0>(ligne) || (ligne)>(nb-1) || 0>(nbAllumette)){
-          throw new ArrayIndexOutOfBoundsException("la ligne doit être entre 0 et " + (nb) + " et il doit y avoir au moins une allumette à enlevé");}
+          throw new ArrayIndexOutOfBoundsException("la ligne doit etre ente 1 et " + nb);}
       else{
           if (tas[ligne]>=nbAllumette){
               return true;
@@ -46,19 +46,8 @@ public class GrpTas {
     }
 
     /** Cette fonction retire une allumette et renvoie true, sinon renvoie false */
-    public boolean retirer(int ligne, int nombreAllumette) {
-        try {
-            if (coupValide(ligne, nombreAllumette)) {
-                tas[ligne]-=nombreAllumette;
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException(e.getMessage());
-        }
+    public void retirer(int ligne, int nombreAllumette) {
+             tas[ligne]-=nombreAllumette;
     }
 
     /** Cette fonction vérifie si la partie est terminé */
