@@ -54,7 +54,7 @@ public class Ihm {
     /** Cette fonction affiche le tas dans le terminal */
     public void afficherTas(int [] tas,int nb){
         for (int i=0;i<nb;i++){
-            for (int j = 0; j < tas.length-i-1; j++) {
+            for (int j = 0; j < nb-i-1; j++) {
                     System.out.print(" ");}
             for (int j=0;j<tas[i];j++){
                 System.out.print("|");}
@@ -66,6 +66,7 @@ public class Ihm {
     /** Cette fonction demande le coup du joueur et la retourne */
     public int[] ligneEtNbAllumette(String nom){
         Scanner in = new Scanner(System.in);
+        int[] tab=new int[2];
         while(true) {
             System.out.println(nom+" : à vous de jouer un coup sous la forme 'm n' où m est le tas choisi et n le nombre d'allumettes à retirer dans ce tas");
             if (in.hasNextLine()) {
@@ -80,8 +81,9 @@ public class Ihm {
                     nb = sc.nextInt();
                 }
                 if (nb != 0) {
-
-                    return new int[]{numTas-1, nb};
+                    tab[0]=numTas-1;
+                    tab[1]=nb;
+                    return tab;
                 }
             }
         }
@@ -100,9 +102,6 @@ public class Ihm {
                 }
                 else if (ch.equalsIgnoreCase("q")) {
                     return false;
-                }
-                else {
-                    sc.next();
                 }
             }
         }
@@ -130,5 +129,8 @@ public class Ihm {
     }
     public void afficherErreur(String e) {
         System.out.println(e);
+    }
+    public void afficherGagnantPartie(String nom) {
+        System.out.println("Le gagnant de cette partie est " + nom);
     }
 }
