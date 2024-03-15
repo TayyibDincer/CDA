@@ -1,20 +1,22 @@
 package controleur;
 
-import vue.Ihm;
-import modele.*;
+import modele.Joueur;
+import modele.Nim.GrpTas;
+
+import vue.IhmJeuNim;
 
 public class ControleurJeuNim {
     /**
-     * L'Ihm
+     * L'IhmJeuNim
      */
-    Ihm ihm;
+    IhmJeuNim ihm;
 
     /**
      * Constructeur de la classe ControleurJeuNim
      *
      * @param i L'ihm
      */
-    public ControleurJeuNim(Ihm i) {
+    public ControleurJeuNim(IhmJeuNim i) {
         this.ihm = i;
     }
 
@@ -42,7 +44,7 @@ public class ControleurJeuNim {
             /* Affiche le tas dans le terminal et récupère le coup 'm n' sous la forme d'un tableau à deux valeurs */
             ihm.afficherTas(tab, nb);
             int[] coup = ihm.ligneEtNbAllumette(joueurActuel.getNom());
-            if ((coup[0] <= nb - 1) && (0 <= coup[0])) {
+            if ((coup[0] <= nb - 1) && (coup[0] >= 0)) {
                 if (tas.coupValide(coup[0], coup[1])) {
                     tas.retirer(coup[0], coup[1]);
                     /* Si le coup est valide on teste si la partie est terminée */
@@ -81,21 +83,21 @@ public class ControleurJeuNim {
                             }
                         }
                     }
+                    /* changer de joueur à chaque tour de jeu */
+                    if (joueurActuel.equals(joueur1)) {
+                        joueurActuel = joueur2;
+                    } else {
+                        joueurActuel = joueur1;
+                    }
                 }
                 else {
-                    ihm.afficherErreur();
+                    ihm.afficherErreur("Coup invalide. Il n'y a pas assez d'allumettes dans le tas choisi.");
                 }
-                /* changer de joueur à chaque tour de jeu */
-                if (joueurActuel.equals(joueur1)) {
-                    joueurActuel = joueur2;
-                } else {
-                    joueurActuel = joueur1;
-                }
+
             }
             /* On affiche une erreur si le coup est invalide */
             else {
-                ihm.afficherErreur("la ligne doit etre ente 1 et " + nb);
-                continue;
+                ihm.afficherErreur("la ligne doit être ente 1 et " + nb);
             }
 
 

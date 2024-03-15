@@ -1,12 +1,12 @@
 package main;
 
-import controleur.ControleurJeuNim;
-import vue.Ihm;
+import controleur.ControleurJeux;
+import vue.IhmJeuNim;
 
 public class Main {
     public static void main(String[] args) {
-        Ihm ihm = new Ihm();
-        ControleurJeuNim controleurJeuNim=new ControleurJeuNim(ihm);
-        controleurJeuNim.jouer();
+        IhmJeuNim ihm = new IhmJeuNim();
+        ControleurJeux controleurJeux=new ControleurJeux(ihm);
+        controleurJeux.jouer();
     }
 }

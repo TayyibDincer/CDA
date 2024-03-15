@@ -1,4 +1,4 @@
-package modele;
+package modele.Nim;
 
 public class GrpTas {
     /** Le nombre de tas initial */
@@ -30,19 +30,19 @@ public class GrpTas {
     }
 
     /** Cette fonction vérifie si le coup 'm n', avec m et n des int, donné par l'utilisateur est valide. C'est-à-dire si m est compris entre 1 et le nombre de tas
-     * @return Renvoie true si le coup 'm n' est valide
-     * @throws ArrayIndexOutOfBoundsException Si la ligne choisie pour le coup est inférieure à 1 ou supérieur au nombre de tas */
-    public boolean coupValide(int ligne,int nbAllumette) throws ArrayIndexOutOfBoundsException {
-      if (0>(ligne) || (ligne)>(nb-1) || 0>(nbAllumette)){
-          throw new ArrayIndexOutOfBoundsException("la ligne doit etre ente 1 et " + nb);}
-      else{
-          if (tas[ligne]>=nbAllumette){
-              return true;
-          }
-          else{
-              return false;
-          }
-      }
+     * @return Renvoie true si le coup 'm n' est valide */
+    public boolean coupValide(int ligne,int nbAllumette) {
+        if (!(nbAllumette<0)) {
+            if (tas[ligne] >= nbAllumette) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
     /** Cette fonction retire une allumette et renvoie true, sinon renvoie false */
@@ -59,5 +59,4 @@ public class GrpTas {
         }
         return true;
     }
-
 }
