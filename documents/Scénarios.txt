@@ -1,4 +1,4 @@
-UC jouer partie :
+UC jouer au jeu de Nim :
 Scénario nominal :
 1. Le système demande le nombre de tas
 2. L'utilisateur saisit un nombre >=1
@@ -14,7 +14,7 @@ Scénario nominal :
 12. Le système affiche le vainqueur de la partie
 13. Le système demande au joueur s'il veut rejouer ou quitter
 14. Le joueur décide de quitter
-115. Le système affiche le nombre de parties gagnés pour chaque joueur et le nom du vainqueur ou ex aequo
+15. Le système affiche le nombre de parties gagnés pour chaque joueur et le nom du vainqueur ou ex aequo
 
 
 Extensions :
