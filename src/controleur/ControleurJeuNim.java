@@ -19,6 +19,7 @@ public class ControleurJeuNim {
     public ControleurJeuNim(IhmJeuNim i) {
         this.ihm = i;
     }
+    private int melina;
 
     public void jouer() {
         /* Demande le nombre de tas "nb" le nom du joueur 1 "nom1" et le nom du joueur 2 "nom2" */
