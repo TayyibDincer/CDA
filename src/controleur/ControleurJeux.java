@@ -1,5 +1,6 @@
 package controleur;
 
+import modele.P4.WrongColorException;
 import vue.*;
 
 public class ControleurJeux {
@@ -9,7 +10,7 @@ public class ControleurJeux {
         this.ihm = i;
     }
 
-    public void jouer() {
+    public void jouer() throws WrongColorException {
         int choix = ihm.choixJeu();
         switch (choix) {
             case 1 -> {

@@ -31,8 +31,8 @@ public class ControleurJeuNim {
         GrpTas tas = new GrpTas(nb);
 
         /* Crée des instances de Joueur pour les deux joueurs */
-        Joueur joueur1 = new Joueur(nom1);
-        Joueur joueur2 = new Joueur(nom2);
+        Joueur joueur1 = new Joueur(nom1, Joueur.ROUGE);
+        Joueur joueur2 = new Joueur(nom2, Joueur.ROUGE);
 
         /* Extrait un tableau de tas */
         int[] tab = tas.creation();

@@ -1,5 +1,7 @@
 package modele.P4;
 
+import modele.Joueur;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,15 +45,17 @@ public class Plateau {
 
     /**
      * @param colonne un int qui représente l'index de la colonne du plateau
-     * @param couleur un entier qui représente la couleur du pion :1 pour la couleur joueur1, -1 pour la couleur joueur2
+     //* @param couleur un entier qui représente la couleur du pion :1 pour la couleur joueur1, -1 pour la couleur joueur2
      * @throws WrongColorException Survient lorsque la variable couleur est différente de -1 ou de 1.*/
-    public void placerPion(int colonne, int couleur) throws WrongColorException {
-        if (couleur != -1 || couleur != 1) { // J'ai pensé à créer un id pour chaque joueur et prendre cet id en paramètre à la place du int couleur.
-            throw new WrongColorException("La couleur du pion doit être -1 si c'est le joueur 2 qui place le pion et 1 si c'est le joueur 1 qui le place.");
-        }
+    public void placerPion(int colonne,Joueur joueurActuel) throws WrongColorException {
         Pair p = lp.get(colonne);
-        this.plateau[p.getX()][p.getY()] = couleur;
-        p.setY(p.getY() - 1);
+        if (p.getY() >= 0) { // Vérifier si la coordonnée Y est valide
+            int couleurJoueurActuel = joueurActuel.getCouleur();
+            this.plateau[p.getX()][p.getY()] = couleurJoueurActuel;
+            p.setY(p.getY() - 1);
+        } else {
+            throw new IllegalStateException("La colonne est pleine, impossible de placer un jeton.");
+        }
     }
 
     public boolean coupValide(int colonne) {
@@ -74,4 +78,5 @@ public class Plateau {
             this.pair[1] = y;
         }
     }
+
 }

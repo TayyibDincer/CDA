@@ -3,15 +3,30 @@ package modele;
 public class Joueur {
     /** Le nom du joueur */
     private final String nom;
+    private int couleur ; // rouge 1 ou jaune -1
 
     /** Le nombre de parties gagnées du joueur */
     private int nbPartieGagnee;
+   /*les couleurs suivantes sont en int pour facilter le travail , ca n'as
+   rien a voir avec l'affichage des couleur dans l'ihm
+    */
+    public static final int ROUGE = 1;
+    public static final int JAUNE = -1;
 
-    /** Le constructeur de la classe Joueur
-     * @param nom Le nom du Joueur */
-    public Joueur(String nom)  {
+    /**
+     * Le constructeur de la classe Joueur
+     *
+     * @param nom   Le nom du Joueur
+     * @param rouge
+     */
+    public Joueur(String nom, int rouge)  {
        this.nom=nom;
        nbPartieGagnee = 0;
+       this.couleur=couleur;
+    }
+
+    public int getCouleur() {
+        return couleur;
     }
 
     public String getNom() {
@@ -40,4 +55,59 @@ public class Joueur {
             return 0;
         }
     }
+    public static boolean verifierVainqueur(int[][] plateau, int couleur) {
+        // Vérification horizontale
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (plateau[i][j] == couleur &&
+                        plateau[i][j+1] == couleur &&
+                        plateau[i][j+2] == couleur &&
+                        plateau[i][j+3] == couleur) {
+                    return true;
+                }
+            }
+        }
+
+        // Vérification verticale
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (plateau[i][j] == couleur &&
+                        plateau[i+1][j] == couleur &&
+                        plateau[i+2][j] == couleur &&
+                        plateau[i+3][j] == couleur) {
+                    return true;
+                }
+            }
+        }
+
+        // Vérification diagonale (de gauche à droite)
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (plateau[i][j] == couleur &&
+                        plateau[i+1][j+1] == couleur &&
+                        plateau[i+2][j+2] == couleur &&
+                        plateau[i+3][j+3] == couleur) {
+                    return true;
+                }
+            }
+        }
+
+        // Vérification diagonale (de droite à gauche)
+        for (int i = 0; i < 4; i++) {
+            for (int j = 6; j >= 3; j--) {
+                if (plateau[i][j] == couleur &&
+                        plateau[i+1][j-1] == couleur &&
+                        plateau[i+2][j-2] == couleur &&
+                        plateau[i+3][j-3] == couleur) {
+                    return true;
+                }
+            }
+        }
+        // dans le cas ou il n'y a pas d'alignement de meme couleur
+        return false;
+    }
+
+
+
 }
+
